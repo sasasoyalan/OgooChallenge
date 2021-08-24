@@ -1,6 +1,8 @@
 package com.sssoyalan.ogoochallenge.adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,24 +13,11 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sssoyalan.ogoochallenge.R
-import com.sssoyalan.ogoochallenge.models.BadgesAndValues
-import com.sssoyalan.ogoochallenge.models.BadgesCount
+import com.sssoyalan.ogoochallenge.models.BadgeModel
 import com.sssoyalan.ogoochallenge.models.Value
 
-class RcyBadgeAdapter(private val mList: List<Value> , private val badgesCount: BadgesCount) : RecyclerView.Adapter<RcyBadgeAdapter.ViewHolder>() {
 
-    private val x = 0
-    private val differCallBack = object : DiffUtil.ItemCallback<Value>() {
-        override fun areItemsTheSame(oldItem: Value, newItem: Value): Boolean {
-            return oldItem.ID == newItem.ID
-        }
-        @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(oldItem: Value, newItem: Value): Boolean {
-            return oldItem == newItem
-        }
-    }
-
-    val differ = AsyncListDiffer(this,differCallBack)
+class RcyBadgeAdapter(private val mList: List<Value> , private val badgesList: List<BadgeModel>, private val  context: Context) : RecyclerView.Adapter<RcyBadgeAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -36,47 +25,26 @@ class RcyBadgeAdapter(private val mList: List<Value> , private val badgesCount: 
         return ViewHolder(view)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val valueModel = mList[position]
-
         holder.badgeTitle.text= valueModel.Title
 
-        when (valueModel.ID) {
-            3 -> {holder.badgeImg.setBackgroundResource(R.drawable.uc)
-                holder.badgeCount.text= badgesCount.badge3.count.toString()+" Adet"
-                holder.badgeRating.rating= badgesCount.badge3.avarage }
-            4 -> {holder.badgeImg.setBackgroundResource(R.drawable.dort)
-                holder.badgeCount.text= badgesCount.badge4.count.toString()+" Adet"
-                holder.badgeRating.rating= badgesCount.badge4.avarage }
-            5 -> {holder.badgeImg.setBackgroundResource(R.drawable.bes)
-                holder.badgeCount.text=badgesCount.badge5.count.toString()+" Adet"
-                holder.badgeRating.rating= badgesCount.badge5.avarage}
-            6 -> {holder.badgeImg.setBackgroundResource(R.drawable.alti)
-                holder.badgeCount.text=badgesCount.badge6.count.toString()+" Adet"
-                holder.badgeRating.rating= badgesCount.badge6.avarage}
-            7 -> {holder.badgeImg.setBackgroundResource(R.drawable.yedi)
-                holder.badgeCount.text=badgesCount.badge7.count.toString()+" Adet"
-                holder.badgeRating.rating= badgesCount.badge7.avarage}
-            8 -> {holder.badgeImg.setBackgroundResource(R.drawable.sekiz)
-                holder.badgeCount.text=badgesCount.badge8.count.toString()+" Adet"
-                holder.badgeRating.rating= badgesCount.badge8.avarage}
-            9 -> {holder.badgeImg.setBackgroundResource(R.drawable.dokuz)
-                holder.badgeCount.text=badgesCount.badge9.count.toString()+" Adet"
-                holder.badgeRating.rating= badgesCount.badge9.avarage}
-            10 -> {holder.badgeImg.setBackgroundResource(R.drawable.on)
-                holder.badgeCount.text=badgesCount.badge10.count.toString()+" Adet"
-                holder.badgeRating.rating= badgesCount.badge10.avarage}
-            11 -> {holder.badgeImg.setBackgroundResource(R.drawable.onbir)
-                holder.badgeCount.text=badgesCount.badge11.count.toString()+" Adet"
-                holder.badgeRating.rating= badgesCount.badge11.avarage}
+        /*
+           Burada image ler png olarak elimizde olduğu için bu şekilde drawable üzerinden kullanıldı.Normal şartlarda
+           apiden gelen image url si Glide kütühanesi ile ait olduğu modelden id sine göre ImageView'ına setlenebilir.
+        */
+        for(i in 0 until badgesList.size-1){
+            if (badgesList.get(i).id==valueModel.ID){
+                val imageName = "img_"+valueModel.ID
+                val imageResource = context.resources.getIdentifier(imageName, "drawable", context.packageName)
+                holder.badgeImg.setBackgroundResource(imageResource)
+                holder.badgeCount.text= badgesList.get(i).count.toString()+" Adet"
+                holder.badgeRating.rating= badgesList.get(i).avarage
+                break
+            }
         }
-
-
-
-
-
     }
 
     override fun getItemCount(): Int {

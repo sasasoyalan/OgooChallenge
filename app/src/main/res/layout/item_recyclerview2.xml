@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView
     android:id="@+id/cv_recylerview2"
     android:layout_width="match_parent"
-    android:layout_height="207dp"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="5dp"
@@ -69,7 +69,7 @@
                 android:layout_height="64dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/uc">
+                android:background="@drawable/img_3">
             </ImageView>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,14 +115,16 @@
             android:id="@+id/user_desc"
             android:layout_width="match_parent"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="5dp"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/userDesc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="2dp"
+                android:layout_height="62dp"
+                android:padding="3dp"
                 android:textSize="12sp"
+                android:scrollbars = "vertical"
                 android:textColor="#4A4A4A"
                 android:text="Lorem ipsum"
                 android:fontFamily="@font/gotham_book">

@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sssoyalan.ogoochallenge.R;
-import com.sssoyalan.ogoochallenge.models.BadgesAndValues;
-import com.sssoyalan.ogoochallenge.models.BadgesCount;
+import com.sssoyalan.ogoochallenge.models.BadgeModel;
 import com.sssoyalan.ogoochallenge.models.Value;
 
 import org.jetbrains.annotations.NotNull;
@@ -22,15 +21,13 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
     private final LayoutInflater mInflater;
     private final Context context;
     private final List<List<Value>> mData;
-    private BadgesAndValues mNewDataBadges;
-    private BadgesCount badgesCount;
+    private List<BadgeModel> badgesList;
     private RcyBadgeAdapter rcyBadgeAdapter;
 
-    public ViewPagerAdapter(Context context, List<List<Value>> mData, BadgesAndValues mNewDataBadges, BadgesCount badgesCount, RcyBadgeAdapter rcyBadgeAdapter) {
+    public ViewPagerAdapter(Context context, List<List<Value>> mData, List<BadgeModel> badgesList, RcyBadgeAdapter rcyBadgeAdapter) {
         this.context=context;
         this.mData = mData;
-        this.mNewDataBadges = mNewDataBadges;
-        this.badgesCount = badgesCount;
+        this.badgesList = badgesList;
         this.mInflater = LayoutInflater.from(context);
         this.rcyBadgeAdapter = rcyBadgeAdapter;
     }
@@ -41,7 +38,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
     }
     @Override
     public void onBindViewHolder(@NotNull ViewHolder holder, int position) {
-        holder.recyclerView.setAdapter(new RcyBadgeAdapter(mData.get(position),badgesCount));
+        holder.recyclerView.setAdapter(new RcyBadgeAdapter(mData.get(position),badgesList,context));
     }
 
 

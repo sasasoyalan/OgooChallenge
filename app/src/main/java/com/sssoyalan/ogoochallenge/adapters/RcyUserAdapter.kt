@@ -28,17 +28,17 @@ class RcyUserAdapter(private val mList: List<Row>) : RecyclerView.Adapter<RcyUse
         holder.userDesc.text=itemsViewModel.Message
 
         when (itemsViewModel.Badge[0].lookupId) {
-            3 -> holder.userImg.setBackgroundResource(R.drawable.uc)
-            4 -> holder.userImg.setBackgroundResource(R.drawable.dort)
-            5 -> holder.userImg.setBackgroundResource(R.drawable.bes)
-            6 -> holder.userImg.setBackgroundResource(R.drawable.alti)
-            7 -> holder.userImg.setBackgroundResource(R.drawable.yedi)
-            8 -> holder.userImg.setBackgroundResource(R.drawable.sekiz)
-            9 -> holder.userImg.setBackgroundResource(R.drawable.dokuz)
-            10 -> holder.userImg.setBackgroundResource(R.drawable.on)
-            11 -> holder.userImg.setBackgroundResource(R.drawable.onbir)
+            3 -> holder.userImg.setBackgroundResource(R.drawable.img_3)
+            4 -> holder.userImg.setBackgroundResource(R.drawable.img_4)
+            5 -> holder.userImg.setBackgroundResource(R.drawable.img_5)
+            6 -> holder.userImg.setBackgroundResource(R.drawable.img_6)
+            7 -> holder.userImg.setBackgroundResource(R.drawable.img_7)
+            8 -> holder.userImg.setBackgroundResource(R.drawable.img_8)
+            9 -> holder.userImg.setBackgroundResource(R.drawable.img_9)
+            10 -> holder.userImg.setBackgroundResource(R.drawable.img_10)
+            11 -> holder.userImg.setBackgroundResource(R.drawable.img_11)
             else -> {
-                holder.userImg.setBackgroundResource(R.drawable.uc)
+                holder.userImg.setBackgroundResource(R.drawable.img_3)
             }
         }
     }

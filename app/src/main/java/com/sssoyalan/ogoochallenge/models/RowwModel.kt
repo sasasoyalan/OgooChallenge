@@ -1,4 +1,3 @@
-import com.sssoyalan.ogoochallenge.models.BadgesCount
 
 data class RowwModel(
     val CurrentFolderSpItemUrl: String?,
@@ -8,7 +7,7 @@ data class RowwModel(
     val ForceNoHierarchy: String?,
     val HierarchyHasIndention: String?,
     val LastRow: Int?,
-    val Row: List<Row>?,
+    val Row: List<Row>,
     val RowLimit: Int?
 )
 data class Rows(
